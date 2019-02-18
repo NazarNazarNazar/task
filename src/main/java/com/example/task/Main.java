@@ -5,11 +5,13 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Main.resultAfterAllIterations(0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11);
+//        Main.resultAfterAllIterations(0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11);
 //        Main.resultAfterAllIterations(0, 5, 10, 0, 11, 14, 13, 4, 11, 8, 8, 7, 1, 4, 12, 11, 391, 2, 2, 1, 9, 9, 3);
-        Main.resultAfterAllIterations(0, 2, 7, 0);
+//        Main.resultAfterAllIterations(0, 2, 7, 0);
 //        Main.resultAfterAllIterations(null);
-        Main.resultAfterAllIterations(3000000, 0);
+//        Main.resultAfterAllIterations(3000000, 0);
+//        Main.resultAfterAllIterations(2147483647, 0);
+        Main.resultAfterAllIterations(2000000000, 0);
     }
 
     /**
@@ -19,6 +21,7 @@ public class Main {
      *
      * @param numbers VarArgs of Integer
      */
+
     private static void resultAfterAllIterations(Integer... numbers) {
         if (numbers != null && numbers.length != 0) {
             // storage of data; the key is Integer which is hashCode of List<Integer>
@@ -73,6 +76,7 @@ public class Main {
         }
     }
 
+
     /**
      * Method finds max value and nullify this value,
      * then redistributes the max value in the list, started with next element after max value
@@ -101,7 +105,7 @@ public class Main {
                 }
             }
 
-            // redistribution of the max value of the list
+            /*
             while (counterMaxValue > 0) {
                 if (index < list.size()) {
                     list.set(index, list.get(index) + 1);
@@ -114,9 +118,45 @@ public class Main {
                     counterMaxValue--;
                 }
             }
-            System.out.println(list);
+            */
 
+            // redistribution of the max value of the list
+            // looking for a number for iteration
+            int i = counterMaxValue % list.size();
+            while (counterMaxValue > 0 && i != 0) {
+                if (index < list.size()) {
+                    list.set(index, list.get(index) + 1);
+                    index++;
+                    counterMaxValue--;
+                    i = counterMaxValue % list.size();
+                } else {
+                    index = 0;
+                    list.set(index, list.get(index) + 1);
+                    index++;
+                    counterMaxValue--;
+                    i = counterMaxValue % list.size();
+                }
+            }
+
+            // number for iteration
+            int n = counterMaxValue / list.size();
+
+            while (counterMaxValue > 0) {
+                if (index < list.size()) {
+                    list.set(index, list.get(index) + n);
+                    index++;
+                    counterMaxValue = counterMaxValue - n;
+                } else {
+                    index = 0;
+                    list.set(index, list.get(index) + n);
+                    index++;
+                    counterMaxValue = counterMaxValue - n;
+                }
+            }
+
+            System.out.println(list);
         }
+
         return list;
     }
 }
