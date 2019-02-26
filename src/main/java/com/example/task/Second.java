@@ -1,6 +1,7 @@
 package main.java.com.example.task;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.stream.IntStream;
 
 public class Second {
@@ -13,7 +14,7 @@ public class Second {
      * @param array of int
      */
     public static void sumSimple(int[] array) {
-        if (array != null) {
+        if (array != null && array.length != 0) {
 
             // https://stackoverflow.com/questions/1484347/finding-the-max-min-value-in-an-array-of-primitives-using-java
             IntSummaryStatistics statistics = Arrays.stream(array).summaryStatistics();
