@@ -11,6 +11,9 @@ public class Second {
     }
 
     /**
+     * Method calculates the sum of values of array, except min and max
+     * values.
+     *
      * @param array of int
      */
     public static void sumSimple(int[] array) {
