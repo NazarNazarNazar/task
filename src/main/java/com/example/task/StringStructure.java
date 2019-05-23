@@ -1,5 +1,7 @@
 package main.java.com.example.task;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class StringStructure {
         getCustomStringStructure(s2).forEach((k, v) -> System.out.println("[" + k + "=" + v + "]"));
     }
 
-    private static Map<String, List<String>> getCustomStringStructure(String s) {
+    private static Map<String, List<String>> getCustomStringStructure(@NotNull String s) {
         // get the array of the strings
         String[] arr = s.split(" ");
         // the storage
@@ -41,11 +43,11 @@ public class StringStructure {
 
         for (int i = 1; i < arr.length; i++) {
             String sub = arr[i].substring(0, 1);
-            // if contains put String arr[i] in the List
+            // if map contains key put String arr[i] in the List
             if (map.containsKey(sub)) {
                 map.get(sub).add(arr[i]);
             } else {
-                // if not put new element in the map
+                // if not put first letter as a key and arr[i] as a value in the map
                 List<String> list = new ArrayList<>();
                 list.add(arr[i]);
                 map.put(sub, list);
